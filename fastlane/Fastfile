@@ -1,0 +1,209 @@
+require_relative 'definitions'
+fastlane_require 'rubygems'
+fastlane_require 'date'
+fastlane_require "tty-prompt"
+fastlane_require 'fileutils'
+
+def recalculate_build_version()
+  result = sh('bash ../scripts/updateVersion.sh')
+end
+
+def get_build_version()
+  result = sh('bash ../scripts/calcBuildNumber.sh')
+end
+
+def get_build_name()
+  result = sh('bash ../scripts/calcBuildName.sh')
+end
+
+def fvm_prefix_if_installed()
+  result = system('command -v fvm')
+  if result === true
+    "fvm "
+  else
+    ""
+  end
+end
+
+def get_changelogs()
+  Dir.chdir("..") do
+
+    # Prints last 5 commits with [note], removes [.*], removes leading whitespace, remove empty new line.
+    # git log -5 --grep="\[note\]" --pretty=%B | sed "s/\[.*\]//" | sed -e "s/^[[:space:]]*//" | sed -r "/^\s*$/d"
+    last_notes = sh("git log -5 --grep=\"\\[note\\]\" --pretty=%B | sed \"s/\\[.*\\]//\" | sed -e \"s/^\\[\\[:space:\\]\\]*//\" | sed -r \"/^\s*$/d\" ")
+
+    changelogs = last_notes
+  end
+end  
+
+
+################################
+# Build and deploy definitions
+################################
+def send_slack_success_message(environments_built)
+    slack(
+      message: "New version is available for testing.",
+      success: true,
+      default_payloads: [],
+      slack_url: ENV["SUCCESS_SLACK_URL"],
+      use_webhook_configured_username_and_icon: true,
+      attachment_properties: {
+        fields: [
+          {
+            title: "New version",
+            value: get_build_name(),
+            short: true
+          },
+          {
+            title: "Deployed Apps",
+            value: "#{environments_built.map{ |string| string.capitalize }.join(' ')}",
+            short: true
+          },
+          {
+            title: "Changelog",
+            value: get_changelogs(),
+            short: false
+          }
+        ]
+      }
+    )
+end
+
+def send_slack_error_message(environments_built, error)
+    slack(
+      message: "Eh.. I tried.",
+      success: false,
+      slack_url: ENV["ERROR_SLACK_URL"],
+      default_payloads: [],
+      use_webhook_configured_username_and_icon: true,
+      attachment_properties: {
+        fields: [
+          {
+            title: "The version you will never see",
+            value: get_build_name(),
+            short: true
+          },
+          {
+            title: "Error",
+            value: error,
+            short: false
+          }
+        ]
+      }
+    )
+end
+
+################################
+# CI MACHINE LINES
+################################
+desc "Check if flutter is installed correctly"
+lane :check_tools do |options|
+  Dir.chdir("..") do
+    sh("echo $PATH")
+  end
+
+  prefix = fvm_prefix_if_installed()
+  flutter_task = "#{prefix}flutter doctor"
+  Dir.chdir("..") do
+    sh("#{flutter_task}")
+  end
+end
+
+desc "Initiates Builds and Deploys for given environments"
+lane :build_deploy_init do |options|
+    environment = options[:environment]
+
+    if environment.nil? && is_ci
+      chosen_environment_types = Environment.as_list
+    elsif environment.nil? && !is_ci
+      prompt = TTY::Prompt.new
+      chosen_environment_types = prompt.multi_select("Environments to build:", Environment.as_list)
+    else
+      chosen_environment_types = [environment]
+    end
+
+    begin
+      generate_classes()
+
+      chosen_environment_types.each do |environment_type|
+#           build_deploy('android', environment_type)
+#           build_deploy('ios', environment_type)
+          build_deploy('web', environment_type)
+      end
+      send_slack_success_message(chosen_environment_types)
+    rescue => ex
+      send_slack_error_message(chosen_environment_types, ex)
+      UI.user_error! ex
+    end
+end
+
+################################
+# LOCAL LANES
+################################
+desc "Smart Commit"
+lane :smart_commit do
+
+  if sh('echo $(git diff --stat)').to_s.strip.length == 0
+    puts "Working tree is clean."
+    UI.user_error! "There is nothing to commit"  
+  else
+    puts "You have uncommited changes."
+  end
+
+  prompt = TTY::Prompt.new
+  is_new_version = prompt.yes?("Branch represents the version.\nCurrent version is #{get_build_name()}. \nDo you want to start new version?") do |q|
+    q.default false
+  end
+
+  prompt = TTY::Prompt.new
+  commit_message = prompt.ask("What you have been working on?", required: true)
+
+  if is_new_version || prompt.yes?("Add to release notes?")
+    suffix = "[note] " # Fastlane will add these commits to release notes based on this flag.
+  else
+    suffix = ""
+  end
+
+  new_version = ""
+  if is_new_version
+    build_types = %w(build patch minor major)
+    build_type = prompt.select("Version increment?", build_types)
+
+    Dir.chdir("../scripts") do
+      new_version = sh("./updateVersion.sh #{build_type}")
+    end
+  else
+    Dir.chdir("../scripts") do
+      new_version = sh("./updateVersion.sh")
+    end
+  end
+
+
+  pretty_version_no_build=new_version[/.*(?=\+)/]
+  sh("git checkout -b '#{pretty_version_no_build}'")
+  Dir.chdir("..") do
+    sh("git add .")
+    sh("git commit -m '#{suffix}#{commit_message}'")
+    sh("git push origin HEAD")
+  end
+
+  puts "To use this tools library put the following in pubspec file:"
+  puts "
+  flutter_tools:
+    git:
+      url: #{sh('git config --get remote.origin.url', log: false).chomp}
+      ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
+end
+
+desc "Test Only"
+lane :test do |options|
+#     version = sh("flutter doctor -v")
+#     puts version
+#     puts "hello"
+  puts "
+  realpad_flutter_styles:
+    git:
+      url: #{sh('git config --get remote.origin.url', log: false).chomp}
+      ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
+
+end
