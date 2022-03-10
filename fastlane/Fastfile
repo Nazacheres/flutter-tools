@@ -172,24 +172,24 @@ lane :smart_commit do
     Dir.chdir("../scripts") do
       new_version = sh("./updateVersion.sh #{build_type}")
     end
+
+    pretty_version_no_build=new_version[/.*(?=\+)/]
+    sh("git checkout -b '#{pretty_version_no_build}'")
   else
     Dir.chdir("../scripts") do
       new_version = sh("./updateVersion.sh")
     end
   end
 
-
-  pretty_version_no_build=new_version[/.*(?=\+)/]
-  sh("git checkout -b '#{pretty_version_no_build}'")
   Dir.chdir("..") do
     sh("git add .")
     sh("git commit -m '#{suffix}#{commit_message}'")
     sh("git push origin HEAD")
   end
 
-  puts "To use this tools library put the following in pubspec file:"
+  puts "To use this styles library put the following in pubspec file:"
   puts "
-  flutter_tools:
+  realpad_flutter_styles:
     git:
       url: #{sh('git config --get remote.origin.url', log: false).chomp}
       ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
@@ -200,10 +200,13 @@ lane :test do |options|
 #     version = sh("flutter doctor -v")
 #     puts version
 #     puts "hello"
-  puts "
-  realpad_flutter_styles:
-    git:
-      url: #{sh('git config --get remote.origin.url', log: false).chomp}
-      ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
-
+#   puts "
+#   realpad_flutter_styles:
+#     git:
+#       url: #{sh('git config --get remote.origin.url', log: false).chomp}
+#       ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
+     Dir.chdir("../scripts") do
+       new_version = sh("./updateVersion.sh patch")
+     end
+     puts new_version
 end

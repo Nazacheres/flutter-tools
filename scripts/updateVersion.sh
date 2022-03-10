@@ -2,7 +2,7 @@
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
 regexVersion='[0-9]\+'
-version=($(echo "Styles version: $branch" | grep -o $regexVersion))
+version=($(echo "Tools version: $branch" | grep -o $regexVersion))
 
 if [ ${#version[@]} -eq 0 ]; then
   version=(0 0 1 1)
