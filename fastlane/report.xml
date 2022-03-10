@@ -5,7 +5,42 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: ./updateVersion.sh patch" time="0.02655">
+      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.014484">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.008428">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: ./updateVersion.sh" time="0.022415">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: git add ." time="0.013585">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: git commit -m &apos;[note] Test&apos;" time="0.023906">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: git push origin HEAD" time="2.070434">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: shell command" time="0.00879">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: shell command" time="0.01028">
         
       </testcase>
     
