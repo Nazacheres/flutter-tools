@@ -190,6 +190,7 @@ lane :smart_commit do
     sh("git add .")
     sh("git commit -m '#{suffix}#{commit_message}'")
     sh("git tag v#{pretty_version_no_build}")
+    sh("git push origin v#{pretty_version_no_build}")
 
     sh("git push origin HEAD")
   end
