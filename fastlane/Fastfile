@@ -165,6 +165,7 @@ lane :smart_commit do
   end
 
   new_version = ""
+  pretty_version_no_build = ""
   if is_new_version
     build_types = %w(build patch minor major)
     build_type = prompt.select("Version increment?", build_types)
@@ -172,18 +173,24 @@ lane :smart_commit do
     Dir.chdir("../scripts") do
       new_version = sh("./updateVersion.sh #{build_type}")
     end
-
-    pretty_version_no_build=new_version[/.*(?=\+)/]
-    sh("git checkout -b '#{pretty_version_no_build}'")
+    pretty_version_no_build = new_version[/.*(?=\+)/]
   else
     Dir.chdir("../scripts") do
       new_version = sh("./updateVersion.sh")
     end
+    pretty_version_no_build = new_version[/.*(?=\+)/]
   end
 
   Dir.chdir("..") do
+
+    if !is_new_version
+        sh("git push --delete origin tagname v#{pretty_version_no_build}")
+    end
+
     sh("git add .")
     sh("git commit -m '#{suffix}#{commit_message}'")
+    sh("git tag v#{pretty_version_no_build}")
+
     sh("git push origin HEAD")
   end
 
@@ -200,13 +207,10 @@ lane :test do |options|
 #     version = sh("flutter doctor -v")
 #     puts version
 #     puts "hello"
-#   puts "
-#   realpad_flutter_styles:
-#     git:
-#       url: #{sh('git config --get remote.origin.url', log: false).chomp}
-#       ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
-     Dir.chdir("../scripts") do
-       new_version = sh("./updateVersion.sh patch")
-     end
-     puts new_version
+  puts "
+  realpad_flutter_styles:
+    git:
+      url: #{sh('git config --get remote.origin.url', log: false).chomp}
+      ref: \"#{sh('git rev-parse --abbrev-ref HEAD', log: false).chomp}\""
+
 end

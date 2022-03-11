@@ -5,42 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.014083">
+      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.014238">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.010499">
+      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.009011">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: ./updateVersion.sh" time="0.028166">
+      <testcase classname="fastlane.lanes" name="2: ./updateVersion.sh patch" time="0.036629">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: git add ." time="0.010489">
+      <testcase classname="fastlane.lanes" name="3: git checkout -b &apos;0.0.3&apos;" time="0.012422">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: git commit -m &apos;[note] Added list extension.&apos;" time="0.021579">
+      <testcase classname="fastlane.lanes" name="4: git add ." time="0.010361">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: git push origin HEAD" time="1.785887">
+      <testcase classname="fastlane.lanes" name="5: git commit -m &apos;[note] Bumping up version&apos;" time="0.019749">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: shell command" time="0.010228">
+      <testcase classname="fastlane.lanes" name="6: git push origin HEAD" time="1.646259">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: shell command" time="0.007833">
+      <testcase classname="fastlane.lanes" name="7: shell command" time="0.008533">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: shell command" time="0.007335">
         
       </testcase>
     
