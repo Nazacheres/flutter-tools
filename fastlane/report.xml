@@ -5,44 +5,62 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.013366">
+      <testcase classname="fastlane.lanes" name="00: echo $(git diff --stat)" time="0.012579">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.00983">
+      <testcase classname="fastlane.lanes" name="01: bash ../scripts/calcBuildName.sh" time="0.007877">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: ./updateVersion.sh" time="0.031382">
+      <testcase classname="fastlane.lanes" name="02: ./updateVersion.sh" time="0.044469">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: git push --delete origin v0.0.2 --no-verify || true" time="1.406602">
+      <testcase classname="fastlane.lanes" name="03: git push --delete origin v0.0.2 || true" time="1.372957">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: git tag -d v0.0.2 --no-verify || true" time="0.012494">
+      <testcase classname="fastlane.lanes" name="04: git tag -d v0.0.2 || true" time="0.011072">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: git add ." time="0.009603">
+      <testcase classname="fastlane.lanes" name="05: git add ." time="0.010126">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: git commit -m &apos;Testing CI&apos;" time="0.019684">
+      <testcase classname="fastlane.lanes" name="06: git commit -m &apos;Testing CI&apos;" time="0.018775">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: git tag v0.0.2" time="0.008915">
+      <testcase classname="fastlane.lanes" name="07: git tag v0.0.2" time="0.008479">
         
-          <failure message="/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/fast_file.rb:222:in `sh&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/fast_file.rb:216:in `sh&apos;&#10;Fastfile:193:in `block (2 levels) in parsing_binding&apos;&#10;Fastfile:184:in `chdir&apos;&#10;Fastfile:184:in `block in parsing_binding&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/lane.rb:33:in `call&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/runner.rb:49:in `block in execute&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/runner.rb:45:in `chdir&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/runner.rb:45:in `execute&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/commands_generator.rb:109:in `block (2 levels) in run&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/commander-4.6.0/lib/commander/command.rb:187:in `call&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/commander-4.6.0/lib/commander/command.rb:157:in `run&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/commands_generator.rb:353:in `run&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/commands_generator.rb:42:in `start&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/fastlane/lib/fastlane/cli_tools_distributor.rb:122:in `take_off&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/fastlane-2.204.3/bin/fastlane:23:in `&lt;top (required)&gt;&apos;&#10;/Users/nazariiovcharchyn/.gem/bin/fastlane:25:in `load&apos;&#10;/Users/nazariiovcharchyn/.gem/bin/fastlane:25:in `&lt;top (required)&gt;&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/cli/exec.rb:58:in `load&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/cli/exec.rb:58:in `kernel_load&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/cli/exec.rb:23:in `run&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/cli.rb:484:in `exec&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/vendor/thor/lib/thor.rb:392:in `dispatch&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/cli.rb:31:in `dispatch&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/vendor/thor/lib/thor/base.rb:485:in `start&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/cli.rb:25:in `start&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/exe/bundle:48:in `block in &lt;top (required)&gt;&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/lib/bundler/friendly_errors.rb:103:in `with_friendly_errors&apos;&#10;/Users/nazariiovcharchyn/.gem/gems/bundler-2.3.7/exe/bundle:36:in `&lt;top (required)&gt;&apos;&#10;/opt/homebrew/opt/ruby/bin/bundle:25:in `load&apos;&#10;/opt/homebrew/opt/ruby/bin/bundle:25:in `&lt;main&gt;&apos;&#10;&#10;Exit status of command &apos;git tag v0.0.2&apos; was 128 instead of 0.&#10;fatal: tag &apos;v0.0.2&apos; already exists&#10;" />
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: git push origin v0.0.2" time="1.690997">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: git push origin HEAD" time="1.692503">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: shell command" time="0.009983">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: shell command" time="0.009597">
         
       </testcase>
     
