@@ -184,7 +184,8 @@ lane :smart_commit do
   Dir.chdir("..") do
 
     if !is_new_version
-        sh("git push --delete origin v#{pretty_version_no_build}")
+        sh("git push --delete origin v#{pretty_version_no_build} --no-verify || true")
+        sh("git tag -d v#{pretty_version_no_build} --no-verify || true")
     end
 
     sh("git add .")
