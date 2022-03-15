@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_tools/extensions/nullability_extensions.dart';
 
 /// https://github.com/allansrc/string_to_hex
@@ -14,20 +17,15 @@ int _getInt(str) {
 
 /// return a hex-color.
 /// to get unique results string should be at least 5 characters long
-int toColor(String inputString) {
-  final stringNonEmpty = inputString;
+Color toColor(String inputString, {saturation = 0.3, lightness = 0.8}) {
   try {
-    var hash = _getInt(stringNonEmpty);
-    var r = (hash & 0xFF0000) >> 16;
-    var g = (hash & 0x00FF00) >> 8;
-    var b = hash & 0x0000FF;
-    var rr = r.toString();
-    var gg = g.toString();
-    var bb = b.toString();
-    return int.parse('0xFF' +
-        (tryOrNull(() => rr.substring(rr.length - 2)) ?? '00') +
-        (tryOrNull(() => rr.substring(gg.length - 2)) ?? '00') +
-        (tryOrNull(() => rr.substring(bb.length - 2)) ?? '00'));
+    var hash = 0;
+    for (var i = 0; i < inputString.length; i++) {
+      hash = inputString.codeUnitAt(i) + ((hash << 5) - hash);
+    }
+
+    int h = hash.abs() % 360;
+    return HSLColor.fromAHSL(1, h.toDouble(), saturation, lightness).toColor();
   } catch (err) {
     if (kDebugMode) {
       print('Couldnt convert string to color: $err');
