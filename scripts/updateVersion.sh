@@ -11,7 +11,6 @@ else
   newBuildVersion=$(git rev-list --count $(git rev-list -n 1 $tag)..HEAD)
 fi
 
-
 major=${version[0]}
 minor=${version[1]}
 patch=${version[2]}
