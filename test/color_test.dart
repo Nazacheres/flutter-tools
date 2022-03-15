@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tools/colors/string_to_color.dart';
 
@@ -7,6 +6,9 @@ void main() {
 
     expect(toColor("Brian Adams"), toColor("Brian Adams"));
     expect(toColor("Fernando Alonso"), toColor("Fernando Alonso"));
+    expect(toColor(" "), toColor(" "));
+    expect(toColor("      "), toColor("      "));
+    expect(toColor("Sixpack Joe"), toColor("Sixpack Joe"));
     expect(toColor("n"), toColor("n"));
     expect(toColor("nu"), toColor("nu"));
     expect(toColor("nul"), toColor("nul"));
