@@ -5,62 +5,12 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: echo $(git diff --stat)" time="0.014831">
+      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.01434">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: bash ../scripts/calcBuildName.sh" time="0.008573">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="02: ./updateVersion.sh" time="0.04174">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="03: git push --delete origin v0.1.1 || true" time="1.683016">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="04: git tag -d v0.1.1 || true" time="0.012006">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="05: git add ." time="0.014771">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="06: git commit -m &apos;[note] Improved color generation from string. Added HSL implementation.&apos;" time="0.025569">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="07: git tag v0.1.1" time="0.011236">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="08: git push origin v0.1.1" time="1.77341">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="09: git push origin HEAD" time="1.686297">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="10: shell command" time="0.009228">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="11: shell command" time="0.007783">
+      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.009331">
         
       </testcase>
     
