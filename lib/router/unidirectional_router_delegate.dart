@@ -30,7 +30,7 @@ abstract class UnidirectionalRouterDelegate<ARS, PSA> extends RouterDelegate<ARS
     if (_stateToProcess != null && _stateToProcess?.state != tryOrNull(() => _stack.last).state) {
       final willBeProcessingState = _stateToProcess;
       _stateToProcess = null;
-      updateStack(context, willBeProcessingState!);
+      _stack.add(createNewPage(context, willBeProcessingState!));
     }
 
     late final pages = _stack.map((e) => e.page).toList();
@@ -61,7 +61,7 @@ abstract class UnidirectionalRouterDelegate<ARS, PSA> extends RouterDelegate<ARS
     reportRouterStateChanges(configuration);
   }
 
-  void updateStack(BuildContext context, UnidirectionalRouterState stateToProcess);
+  UnidirectionalRouterPage createNewPage(BuildContext context, UnidirectionalRouterState stateToProcess);
 
 }
 
