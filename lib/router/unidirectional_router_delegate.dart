@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tools/extensions/nullability_extensions.dart';
 
 abstract class UnidirectionalRouterDelegate<ARS, PSA> extends RouterDelegate<ARS> with ChangeNotifier, PopNavigatorRouterDelegateMixin<ARS> {
-  UnidirectionalRouterDelegate({required UnidirectionalRouterState<ARS, PSA?> initialState}) :
+  UnidirectionalRouterDelegate({required UnidirectionalRouterState<ARS, PSA> initialState}) :
         _stateToProcess = initialState,
         _initialState = initialState;
 
   final List<UnidirectionalRouterPage> _stack = [];
 
 
-  final UnidirectionalRouterState _initialState;
-  UnidirectionalRouterState? _stateToProcess;
+  final UnidirectionalRouterState<ARS, PSA> _initialState;
+  UnidirectionalRouterState<ARS, PSA>? _stateToProcess;
 
   @override
   final navigatorKey = GlobalKey<NavigatorState>();
@@ -61,7 +61,7 @@ abstract class UnidirectionalRouterDelegate<ARS, PSA> extends RouterDelegate<ARS
     reportRouterStateChanges(configuration);
   }
 
-  UnidirectionalRouterPage createNewPage(BuildContext context, UnidirectionalRouterState stateToProcess);
+  UnidirectionalRouterPage<ARS> createNewPage(BuildContext context, UnidirectionalRouterState<ARS, PSA> stateToProcess);
 
 }
 
