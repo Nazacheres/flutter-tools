@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tools/extensions/nullability_extensions.dart';
 
+@Deprecated('Use OnewayRouter instead.')
 abstract class UnidirectionalRouterDelegate<ARS, PSA> extends RouterDelegate<ARS> with ChangeNotifier, PopNavigatorRouterDelegateMixin<ARS> {
   UnidirectionalRouterDelegate({required UnidirectionalRouterState<ARS, PSA> initialState}) :
         _stateToProcess = initialState,
         _initialState = initialState;
 
-  final List<UnidirectionalRouterPage> _stack = [];
+  final List<UnidirectionalRouterPage<ARS>> _stack = [];
 
 
   final UnidirectionalRouterState<ARS, PSA> _initialState;
