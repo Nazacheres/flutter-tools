@@ -5,62 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: echo $(git diff --stat)" time="0.012639">
+      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.01271">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: bash ../scripts/calcBuildName.sh" time="0.007977">
+      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.008723">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: ./updateVersion.sh" time="0.035759">
+      <testcase classname="fastlane.lanes" name="2: ./updateVersion.sh patch" time="0.046487">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: git push --delete origin v0.1.3 || true" time="1.316142">
+      <testcase classname="fastlane.lanes" name="3: git add ." time="0.010512">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: git tag -d v0.1.3 || true" time="0.011433">
+      <testcase classname="fastlane.lanes" name="4: git commit -m &apos;[note] Added new version of Router - OnewayRouter.&apos;" time="0.020145">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: git add ." time="0.010942">
+      <testcase classname="fastlane.lanes" name="5: git tag v0.1.4" time="0.008315">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: git commit -m &apos;[note] Fixed nullability issues and generic bugs.&apos;" time="0.023873">
+      <testcase classname="fastlane.lanes" name="6: git push origin v0.1.4" time="1.498169">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: git tag v0.1.3" time="0.01087">
+      <testcase classname="fastlane.lanes" name="7: git push origin HEAD" time="1.43655">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: git push origin v0.1.3" time="1.601835">
+      <testcase classname="fastlane.lanes" name="8: shell command" time="0.0164">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: git push origin HEAD" time="1.372944">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="10: shell command" time="0.008605">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="11: shell command" time="0.008345">
+      <testcase classname="fastlane.lanes" name="9: shell command" time="0.012237">
         
       </testcase>
     

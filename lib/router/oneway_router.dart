@@ -21,13 +21,13 @@ abstract class OnewayRouter<ARS, PSA> extends RouterDelegate<ARS> with ChangeNot
     }
   }
 
-  void reportRouterStateChanges(ARS appRouteState, [PSA? stateArguments]) {
+  void reportRouterStateChanges(ARS appRouteState, {PSA? stateArguments, bool isDeepLink = false}) {
     logListener('UniRouter - Received ARS: $appRouteState with PDS: $stateArguments');
 
     final stateToProcess = OnewayRouterState(appRouteState, stateArguments);
 
     if (stateToProcess.state != tryOrNull(() => _stack.last)?.state) {
-      final _newStack = updateStack(stateToProcess, _stack.toList());
+      final _newStack = updateStack(stateToProcess, _stack.toList(), isDeepLink);
       _stack.clear();
       _stack.addAll(_newStack);
     }
@@ -43,7 +43,7 @@ abstract class OnewayRouter<ARS, PSA> extends RouterDelegate<ARS> with ChangeNot
   @override
   Widget build(BuildContext context) {
     if (_stack.isEmpty) {
-      final _newStack = updateStack(_initialState, _stack.toList());
+      final _newStack = updateStack(_initialState, _stack.toList(), false);
       _stack.clear();
       _stack.addAll(_newStack);
     }
@@ -75,10 +75,10 @@ abstract class OnewayRouter<ARS, PSA> extends RouterDelegate<ARS> with ChangeNot
   /// So navigational blocs should have required values already in the state.
   @override
   Future<void> setNewRoutePath(ARS configuration) async {
-    reportRouterStateChanges(configuration);
+    reportRouterStateChanges(configuration, isDeepLink: true);
   }
 
-  List<OnewayRouterPage<ARS>> updateStack(OnewayRouterState<ARS, PSA> stateToProcess, List<OnewayRouterPage<ARS>> currentStack);
+  List<OnewayRouterPage<ARS>> updateStack(OnewayRouterState<ARS, PSA> stateToProcess, List<OnewayRouterPage<ARS>> currentStack, bool isDeepLink);
 }
 
 class OnewayRouterState<ARS, PSA> {
