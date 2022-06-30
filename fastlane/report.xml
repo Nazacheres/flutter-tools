@@ -5,52 +5,62 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: echo $(git diff --stat)" time="0.011738">
+      <testcase classname="fastlane.lanes" name="00: echo $(git diff --stat)" time="0.014149">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: bash ../scripts/calcBuildName.sh" time="0.009111">
+      <testcase classname="fastlane.lanes" name="01: bash ../scripts/calcBuildName.sh" time="0.009705">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: ./updateVersion.sh patch" time="0.044798">
+      <testcase classname="fastlane.lanes" name="02: ./updateVersion.sh" time="0.051059">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: git add ." time="0.011394">
+      <testcase classname="fastlane.lanes" name="03: git push --delete origin v0.1.5 || true" time="1.523815">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: git commit -m &apos;[note] Added DeepLink as updateStack parameters to OnewayRouter.&apos;" time="0.020592">
+      <testcase classname="fastlane.lanes" name="04: git tag -d v0.1.5 || true" time="0.025599">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: git tag v0.1.5" time="0.009298">
+      <testcase classname="fastlane.lanes" name="05: git add ." time="0.013426">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: git push origin v0.1.5" time="1.370889">
+      <testcase classname="fastlane.lanes" name="06: git commit -m &apos;[note] Added size prettifier.&apos;" time="0.022456">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: git push origin HEAD" time="1.350449">
+      <testcase classname="fastlane.lanes" name="07: git tag v0.1.5" time="0.008265">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: shell command" time="0.00912">
+      <testcase classname="fastlane.lanes" name="08: git push origin v0.1.5" time="1.652165">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: shell command" time="0.008787">
+      <testcase classname="fastlane.lanes" name="09: git push origin HEAD" time="1.493461">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: shell command" time="0.017991">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: shell command" time="0.010691">
         
       </testcase>
     
