@@ -23,12 +23,12 @@ abstract class UnidirectionalRouterDelegate<ARS, PSA> extends RouterDelegate<ARS
 
   @override
   ARS get currentConfiguration {
-    return tryOrNull(() => _stack.last).state ?? _initialState.state;
+    return tryOrNull(() => _stack.last)?.state ?? _initialState.state;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_stateToProcess != null && _stateToProcess?.state != tryOrNull(() => _stack.last).state) {
+    if (_stateToProcess != null && _stateToProcess?.state != tryOrNull(() => _stack.last)?.state) {
       final willBeProcessingState = _stateToProcess;
       _stateToProcess = null;
       _stack.add(createNewPage(context, willBeProcessingState!));
