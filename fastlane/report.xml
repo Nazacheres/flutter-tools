@@ -5,62 +5,62 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: echo $(git diff --stat)" time="0.011978">
+      <testcase classname="fastlane.lanes" name="00: echo $(git diff --stat)" time="0.017371">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: bash ../scripts/calcBuildName.sh" time="0.00905">
+      <testcase classname="fastlane.lanes" name="01: bash ../scripts/calcBuildName.sh" time="0.011096">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: ./updateVersion.sh" time="0.034117">
+      <testcase classname="fastlane.lanes" name="02: ./updateVersion.sh" time="0.042616">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: git push --delete origin v0.1.5 || true" time="1.332573">
+      <testcase classname="fastlane.lanes" name="03: git push --delete origin v0.1.5 || true" time="3.6492">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: git tag -d v0.1.5 || true" time="0.015245">
+      <testcase classname="fastlane.lanes" name="04: git tag -d v0.1.5 || true" time="0.027294">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: git add ." time="0.011057">
+      <testcase classname="fastlane.lanes" name="05: git add ." time="0.016005">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: git commit -m &apos;[note] Fixed nullability in unidirectinoal router delegate.&apos;" time="0.025258">
+      <testcase classname="fastlane.lanes" name="06: git commit -m &apos;[note] Added JWT converter.&apos;" time="0.029585">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: git tag v0.1.5" time="0.008439">
+      <testcase classname="fastlane.lanes" name="07: git tag v0.1.5" time="0.010802">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: git push origin v0.1.5" time="1.357835">
+      <testcase classname="fastlane.lanes" name="08: git push origin v0.1.5" time="1.335172">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: git push origin HEAD" time="1.406831">
+      <testcase classname="fastlane.lanes" name="09: git push origin HEAD" time="1.375912">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="10: shell command" time="0.008636">
+      <testcase classname="fastlane.lanes" name="10: shell command" time="0.008894">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="11: shell command" time="0.009434">
+      <testcase classname="fastlane.lanes" name="11: shell command" time="0.00758">
         
       </testcase>
     

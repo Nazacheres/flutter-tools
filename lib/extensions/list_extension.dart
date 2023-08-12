@@ -2,7 +2,11 @@ extension ListExtensions<T> on List<T> {
   /// Adds the [value] between all elements in the list
   void addBetweenAll(T value) {
     for (int i = length - 1; i > 0; i--) {
-      insert(i, value);
+      try {
+        insert(i, value);
+      } catch (e) {
+        print(e);
+      }
     }
   }
 }
