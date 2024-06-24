@@ -1,6 +1,6 @@
 name: flutter_tools
 description: Flutter tools
-version: 0.2.0+0
+version: 0.2.0+1
 publish_to: none
 
 environment:
