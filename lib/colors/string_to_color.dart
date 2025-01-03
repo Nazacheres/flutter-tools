@@ -4,6 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_tools/extensions/nullability_extensions.dart';
 
+extension HexColor on Color {
+  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
+  String toHex({bool leadingHashSign = true, bool leading10rad = false}) => '${leadingHashSign ? '#' : leading10rad ? '0x' : ''}'
+      '${(a*255).toInt().toRadixString(16).padLeft(2, '0')}'
+      '${(r*255).toInt().toRadixString(16).padLeft(2, '0')}'
+      '${(g*255).toInt().toRadixString(16).padLeft(2, '0')}'
+      '${(b*255).toInt().toRadixString(16).padLeft(2, '0')}';
+}
+
 /// https://github.com/allansrc/string_to_hex
 int _getInt(str) {
   var hash = 5381;

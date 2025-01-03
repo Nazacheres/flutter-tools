@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tools/colors/string_to_color.dart';
 
@@ -15,5 +16,13 @@ void main() {
     expect(toColor("null"), toColor("null"));
     expect(toColor("nulll"), toColor("nulll"));
     expect(toColor(""), toColor(""));
+  });
+
+  test('Convert color to string rad 10 and # for transportation purpose', () {
+    final stringRed = Colors.red.toHex(leadingHashSign: false, leading10rad: true);
+    print(stringRed);
+    final redConverted = Color(int.parse(stringRed));
+    print(redConverted);
+    expect(Colors.red.toHex(), redConverted.toHex());
   });
 }
